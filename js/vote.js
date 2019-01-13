@@ -1,6 +1,6 @@
 var t = TrelloPowerUp.iframe();
 
-window.estimate.addEventListener('submit', function(event){
+window.vote.addEventListener('submit', function(event){
   // Stop the browser trying to submit the form itself.
   event.preventDefault();
   return t.set('card', 'shared', 'vote', window.votePriority.value)
