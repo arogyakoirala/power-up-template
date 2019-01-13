@@ -322,6 +322,18 @@ TrelloPowerUp.initialize({
       }]
 
     }
+
+    'card-back-section': function(t, options){
+  return {
+    title: 'My Card Back Section',
+    icon: GRAY_ICON, // Must be a gray icon, colored icons not allowed.
+    content: {
+      type: 'iframe',
+      url: t.signUrl('./vote.html'),
+      // height: 230 // Max height is 500
+    }
+  };
+}
   // NOTE about asynchronous responses
   // If you need to make an asynchronous request or action before you can reply to Trello
   // you can return a Promise (bluebird promises are included at TrelloPowerUp.Promise)
