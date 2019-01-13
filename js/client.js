@@ -303,6 +303,38 @@ TrelloPowerUp.initialize({
           });
         }
       }];
+    },
+    'card-detail-badges': function(t, options) {
+      return [
+        {
+          dynamic: function() {
+            return {
+              title: 'Nice to have',
+              color: randomBadgeColor(),
+              refresh: 10,
+            }
+          }
+        },
+        {
+          dynamic: function() {
+            return {
+              title: 'Important',
+              color: randomBadgeColor(),
+              refresh: 10,
+            }
+          }
+        },
+        {
+          dynamic: function() {
+            return {
+              title: 'Critical',
+              color: randomBadgeColor(),
+              refresh: 10,
+            }
+          }
+        },
+      ]
+
     }
   // NOTE about asynchronous responses
   // If you need to make an asynchronous request or action before you can reply to Trello

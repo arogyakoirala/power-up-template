@@ -10,7 +10,6 @@ window.vote.addEventListener('submit', function(event){
   }).then(function(){
     return t.get('card', 'shared', window.votePriority.value)
   }).then(function(res){
-    console.log(res, 'Myresponse');
     return t.set('card', 'shared', window.votePriority.value, res+1);
   }).then(function(){
     t.closePopup();
