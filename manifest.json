@@ -1,0 +1,9 @@
+{
+  "name": "Votester",
+  "details":"Just vote vote",
+  "capabilities": [
+    "callback",
+    "card-buttons",
+    "card-detail-badges"
+  ],
+}

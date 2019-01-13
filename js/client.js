@@ -310,15 +310,16 @@ TrelloPowerUp.initialize({
           return {
               title: 'Specify Priority',
               text: 'Test',
-              color: null,
               callback: function(t){
                 return t.popup({
                   title: "How important is this?",
                   url: 'vote.html'
                 });
-              }
+              },
+              color: null
           }
-        }}]
+        }
+      }]
 
     }
   // NOTE about asynchronous responses
