@@ -289,6 +289,15 @@ TrelloPowerUp.initialize({
             url: 'estimate.html'
           });
         }
+      }, {
+        icon: 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421',
+        text: 'Vote for feature',
+        callback: function(t){
+          return t.popup({
+            title: "How important is this?",
+            url: 'vote.html'
+          });
+        }
       }];
     }
   // NOTE about asynchronous responses
