@@ -6,14 +6,10 @@ window.vote.addEventListener('submit', function(event){
 
   return t.set('card', 'shared',{nice_to_have:0, important:0, critical:0})
   .then(function(){
+    console.log('promise1')
     t.getAll()
-  }).then(function(res){
-    if(res.card.shared[window.votePriority.value]) {
-      return t.set('card','shared', window.votePriority.value, res.card.shared[window.votePriority.value]-1)
-    } else {
-      return t.set('card', 'shared',window.votePriority.value, 0);
-    }
-  }).then(function(){
+  }).then(function(res){})
+  .then(function(){
     return t.set('member', 'shared', 'vote', window.votePriority.value)
   }).then(function(){
     return t.getAll()
