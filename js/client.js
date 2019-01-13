@@ -305,14 +305,14 @@ TrelloPowerUp.initialize({
       }];
     },
     'card-detail-badges': function(t, options) {
-      return [
+      return [{
         dynamic: function() {
           return {
               title: Priority,
               text: 'Test',
               color: '#f00',
           }
-        },
+        }},
         {
           title: 'Priority',
           text: 'Set Priority',
@@ -322,8 +322,7 @@ TrelloPowerUp.initialize({
               url: 'vote.html'
             });
           }
-        }
-      ]
+        }]
 
     }
   // NOTE about asynchronous responses
