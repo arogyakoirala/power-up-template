@@ -8,9 +8,9 @@ window.vote.addEventListener('submit', function(event){
   return t.set('member', 'shared', 'vote', window.votePriority.value)
   .then(function(){
   }).then(function(){
-    return t.get('card', 'shared', window.votePriority.value)
+    return t.getAll()
   }).then(function(res){
-    console.log('Myserponse, ',JSON.stringify(res));
+    console.log('Myserponse, ', res);
     return t.set('card', 'shared', window.votePriority.value, res+1);
   }).then(function(){
     t.closePopup();
