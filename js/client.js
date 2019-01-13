@@ -318,17 +318,7 @@ TrelloPowerUp.initialize({
                 });
               }
           }
-        }},
-        {
-          title: 'Priority',
-          text: 'Set Priority',
-          callback: function(t){
-            return t.popup({
-              title: "How important is this?",
-              url: 'vote.html'
-            });
-          }
-        }]
+        }}]
 
     }
   // NOTE about asynchronous responses
