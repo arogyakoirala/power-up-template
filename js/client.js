@@ -308,7 +308,7 @@ TrelloPowerUp.initialize({
       return [{
         dynamic: function() {
           return {
-              title: Priority,
+              title: 'Specify Priority',
               text: 'Test',
               color: null,
               callback: function(t){
