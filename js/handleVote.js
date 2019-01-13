@@ -10,8 +10,8 @@ window.vote.addEventListener('submit', function(event){
   }).then(function(){
     return t.getAll()
   }).then(function(res){
-    console.log('Myserponse, ', res);
-    return t.set('card', 'shared', window.votePriority.value, res.card.shared[window.votePriority.value]+1);
+    console.log('Myserponse, ', res.card.shared[window.votePriority.value],Number(res.card.shared[window.votePriority.value]) );
+    return t.set('card', 'shared', window.votePriority.value, Number(res.card.shared[window.votePriority.value])+1);
   }).then(function(){
     t.closePopup();
   });
