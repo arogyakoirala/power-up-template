@@ -18,7 +18,7 @@ window.vote.addEventListener('submit', function(event){
     return t.set('card', 'shared', window.votePriority.value, Number(res.card.shared[window.votePriority.value])+1);
   })
   .then(function(){
-    t.closePopup();
+    // t.closePopup();
   })
 
   // Stop the browser trying to submit the form itself.
