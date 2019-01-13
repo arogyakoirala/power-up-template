@@ -7,8 +7,11 @@ window.vote.addEventListener('submit', function(event){
   event.preventDefault();
   return t.set('member', 'shared', 'vote', window.votePriority.value)
   .then(function(){
-    console.log('value set to ', window.votePriority.value);
-    return t.set('card', 'shared', window.votePriority.value, t.get('card', 'shared', window.votePriority.value)+1);
+  }).then(function(){
+    return t.get('card', 'shared', window.votePriority.value)
+  }).then(function(res){
+    console.log(res, 'Myresponse');
+    return t.set('card', 'shared', window.votePriority.value, res+1);
   }).then(function(){
     t.closePopup();
   });
