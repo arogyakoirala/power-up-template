@@ -277,9 +277,22 @@ var voteCallBack = function(t, opts) {
   })
 }
 
+var voteMapping = {
+  nice_to_have: 'Nice to have',
+  important: 'Important',
+  critical: 'Critical'
+}
+
 // We need to call initialize to get all of our capability handles set up and registered with Trello
 TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
+
+      for(key in Object.keys(voteMapping)){
+        if(!t.get('card','shared',key)) {
+          t.set('card', 'shared', key, 0)
+        }
+      };
+
       return [{
         icon: 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421',
         text: 'Vote for feature',
