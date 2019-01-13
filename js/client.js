@@ -321,7 +321,7 @@ TrelloPowerUp.initialize({
         }
       }]
 
-    }
+    },
 
     'card-back-section': function(t, options){
   return {
