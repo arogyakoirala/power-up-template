@@ -310,7 +310,13 @@ TrelloPowerUp.initialize({
           return {
               title: Priority,
               text: 'Test',
-              color: '#f00',
+              color: null,
+              callback: function(t){
+                return t.popup({
+                  title: "How important is this?",
+                  url: 'vote.html'
+                });
+              }
           }
         }},
         {
