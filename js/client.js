@@ -286,7 +286,7 @@ TrelloPowerUp.initialize({
         callback: function(t){
           return t.popup({
             title: "Priority",
-            url: 'estimate.html'
+            url: 'vote.html'
           });
         }
       }];
