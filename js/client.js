@@ -279,16 +279,18 @@ var voteCallBack = function(t, opts) {
 
 // We need to call initialize to get all of our capability handles set up and registered with Trello
 TrelloPowerUp.initialize({
-  'card-buttons': function (t, opts) {
-    t.set('card', 'shared', 'nice_to_have', 0);
-    t.set('card', 'shared', 'important', 0);
-    t.set('card', 'shared', 'critical', 0);
-  return [{
-    icon: GRAY_ICON,
-    text: 'Vote',
-    callback: voteCallBack
-  }];
-}
+  'card-buttons': function(t, options){
+      return [{
+        icon: 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421',
+        text: 'Estimate Size',
+        callback: function(t){
+          return t.popup({
+            title: "Priority",
+            url: 'estimate.html'
+          });
+        }
+      }];
+    }
   // NOTE about asynchronous responses
   // If you need to make an asynchronous request or action before you can reply to Trello
   // you can return a Promise (bluebird promises are included at TrelloPowerUp.Promise)

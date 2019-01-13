@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://p.trellocdn.com/power-up.min.css">
+    <style>
+      select { height: 30px; }
+    </style>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  </head>
+  <body>
+    <form id="vote">
+      <label for="votePriority">Estimate:</label>
+      <select name="size" id="votePriority">
+        <option value="small">Nice to have</option>
+        <option value="medium">Important</option>
+        <option value="large">Critical</option>
+      </select>
+      <button type="submit" class="mod-primary">Save</button>
+    </form>
+    <script src="./js/vote.js"></script>
+  </body>
+</html>
