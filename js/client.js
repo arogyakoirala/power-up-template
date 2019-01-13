@@ -307,32 +307,15 @@ TrelloPowerUp.initialize({
     'card-detail-badges': function(t, options) {
       return [
         {
-          dynamic: function() {
-            return {
-              title: 'Nice to have',
-              color: randomBadgeColor(),
-              refresh: 10,
-            }
+          title: 'Priority',
+          text: 'Set Priority',
+          callback: function(t){
+            return t.popup({
+              title: "How important is this?",
+              url: 'vote.html'
+            });
           }
-        },
-        {
-          dynamic: function() {
-            return {
-              title: 'Important',
-              color: randomBadgeColor(),
-              refresh: 10,
-            }
-          }
-        },
-        {
-          dynamic: function() {
-            return {
-              title: 'Critical',
-              color: randomBadgeColor(),
-              refresh: 10,
-            }
-          }
-        },
+        }
       ]
 
     }
