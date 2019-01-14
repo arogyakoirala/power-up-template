@@ -21,6 +21,8 @@ TrelloPowerUp.initialize({
                       imp: (allValues.card && allValues.card.imp) ? allValues.card.imp-1: 0,
                       cri: (allValues.card && allValues.card.cri) ? allValues.card.cri-1: 0,
                     })
+                  }).then(function(){
+                    t.closePopup();
                   })
                 }
               },
@@ -37,6 +39,8 @@ TrelloPowerUp.initialize({
                       imp: (allValues.card && allValues.card.imp) ? allValues.card.imp+1: 1,
                       cri: (allValues.card && allValues.card.cri) ? allValues.card.cri-1: 0,
                     })
+                  }).then(function(){
+                    t.closePopup();
                   })
                 }
               },
@@ -53,6 +57,8 @@ TrelloPowerUp.initialize({
                       imp: (allValues.card && allValues.card.imp) ? allValues.card.imp-1: 0,
                       cri: (allValues.card && allValues.card.cri) ? allValues.card.cri+1: 1,
                     })
+                  }).then(function(){
+                    t.closePopup();
                   })
                 }
               },
@@ -84,7 +90,7 @@ TrelloPowerUp.initialize({
         var nthtext= (allValues.card && allValues.card.shared.nth) ? "L: "+ String(allValues.card.shared.nth): "L: 0";
         var imptext= (allValues.card && allValues.card.shared.imp )? "M: "+ String(allValues.card.shared.imp): "M: 0";
         var criticaltext= (allValues.card && allValues.card.shared.cri) ? "H: "+ String(allValues.card.shared.cri): "H: 0";
-        
+
         return [
           {
             text: nthtext,
