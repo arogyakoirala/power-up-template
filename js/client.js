@@ -88,9 +88,9 @@ TrelloPowerUp.initialize({
                     return t.getAll()
                   }).then(function(allValues){
                     return t.set('card', 'shared', {
-                      cri: (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? allValues.card.shared.nth: 0,
+                      nth: (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? allValues.card.shared.nth: 0,
                       imp: (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? allValues.card.shared.imp: 0,
-                      nth: (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? allValues.member.private.selection === "cri" ? allValues.card.shared.cri: allValues.card.shared.cri + allValues.card.private.cri : 1,
+                      cri: (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? allValues.member.private.selection === "cri" ? allValues.card.shared.cri: allValues.card.shared.cri + allValues.card.private.cri : 1,
 
                     })
                   }).then(function(){
