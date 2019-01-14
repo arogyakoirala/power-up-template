@@ -81,9 +81,9 @@ TrelloPowerUp.initialize({
   },
   "card-badges": function(t, opts){
     return t.getAll().then(function(res){
-      var nthtext= res.card.shared.nice_to_have ? "Nice to have: "+ String(res.card.shared.nice_to_have): "Nice to have: 0";
-      var imptext= res.card.shared.important ? "Important: "+ String(res.card.shared.important): "Important: 0";
-      var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "Critical: 0";
+      var nthtext= (res.card && res.card.shared.nice_to_have) ? "L: "+ String(res.card.shared.nice_to_have): "L: 0";
+      var imptext= (res.card && res.card.shared.important )? "M: "+ String(res.card.shared.important): "M: 0";
+      var criticaltext= (res.card && res.card.shared.critical) ? "H: "+ String(res.card.shared.critical): "H: 0";
 
       return [
         {
