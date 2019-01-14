@@ -106,9 +106,9 @@ TrelloPowerUp.initialize({
                   console.log(isNew, data.card.private.selected, data.card.shared.nth - 1 ,data.card.shared.nth,data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth);
                   return t.set('card', 'shared', {
                     votingMembers: myArray,
-                    nth: !isNew && (data.card.shared.nth - 1) || (data.card.shared.nth),
+                    nth: !isNew ? (data.card.shared.nth - 1) : (data.card.shared.nth),
                     imp: !isNew && data.card.private.selected === 'imp' ? (data.card.shared && data.card.shared.imp || 1) : data.card.shared && data.card.shared.imp + 1 || 1,
-                    cri: !isNew && data.card.shared.cri - 1 || data.card.shared.cri
+                    cri: !isNew ? data.card.shared.cri - 1 : data.card.shared.cri
                   })
                 })
                 .then(function(){
