@@ -33,7 +33,9 @@ TrelloPowerUp.initialize({
                     nth: data.card.private.selected === nth ? data.card.shared.nth || 0 : data.card.shared.nth || 0 + 1;
                   })
                 })
-                .then(function());
+                .then(function(){
+                  t.closePopup();
+                });
               }
             }]
           })
