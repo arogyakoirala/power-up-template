@@ -103,7 +103,7 @@ TrelloPowerUp.initialize({
                     myArray = data.card.shared.votingMembers
                   }
 
-                  console.log(isNew, data.card.private.selected, data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth);
+                  console.log(isNew, data.card.private.selected, data.card.shared.nth - 1 ,data.card.shared.nth,data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth);
                   return t.set('card', 'shared', {
                     votingMembers: myArray,
                     nth: !isNew && data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth,
