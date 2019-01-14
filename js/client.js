@@ -2,10 +2,8 @@
 
 TrelloPowerUp.initialize({
   "card-detail-badges": function(t, opts) {
-    return t.remove('card', 'shared', ['nice_to_have', 'important', 'critical', 'Nice to have', 'Important', 'Critical', 'vote', 'Nothing selected', 'currentSelection', 'pastSelection'])
-    .then(function(){
-    return t.get("member", "private", "currentSelection");
-    }).then(function(res){
+
+    return t.get("member", "private", "currentSelection").then(function(res){
       return [{
         title: "Set Priority",
         text:res || 'No priority set',
