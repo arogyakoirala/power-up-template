@@ -81,12 +81,24 @@ TrelloPowerUp.initialize({
   },
   "card-badges": function(t, opts){
     return t.getAll().then(function(res){
-      var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "0";
+      var nthtext= res.card.shared.nice_to_have ? "Nice to have: "+ String(res.card.shared.nice_to_have): "Nice to have: 0";
+      var imptext= res.card.shared.important ? "Important: "+ String(res.card.shared.important): "Important: 0";
+      var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "Critical: 0";
 
-      return [{
-        text: criticaltext,
-        color:'red',
-      }]
+      return [
+        {
+          text: nthtext,
+          color:'yellow',
+        },
+        {
+          text: imptext,
+          color:'green',
+        },
+        {
+          text: criticaltext,
+          color:'red',
+        },
+    ]
     })
   }
 });
