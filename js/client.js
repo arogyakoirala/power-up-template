@@ -12,6 +12,7 @@ TrelloPowerUp.initialize({
       return [{
         title: "How important is this feature?",
         text: textMapper[selected] || textMapper.unspecified,
+        color:'green',
         callback: function (t, opts) {
           return t.popup({
             title: "Choose an option",
