@@ -36,9 +36,14 @@ TrelloPowerUp.initialize({
                 .then(function(data){
 
                   var array = [];
-                  console.log(data.card.shared && !data.card.shared.votingMembers && array.push(data.card.private.memberId));
+
+                  if(data.card.shared && !data.card.shared.votingMembers) {
+                    array.push(data.card.private.memberId)
+                  }
+
+                  console.log(data.card.shared && !data.card.shared.votingMembers && array);
                   return t.set('card', 'shared', {
-                    votingMembers: data.card.shared && !data.card.shared.votingMembers && array.push(data.card.private.memberId) || !data.card.shared.votingMembers.includes(data.card.private.memberId) && data.card.shared.votingMembers.push(data.card.private.memberId),
+                    votingMembers: data.card.shared && !data.card.shared.votingMembers && array || !data.card.shared.votingMembers.includes(data.card.private.memberId) && data.card.shared.votingMembers.push(data.card.private.memberId),
                   })
                 })
                 .then(function(){
