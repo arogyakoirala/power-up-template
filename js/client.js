@@ -28,7 +28,8 @@ TrelloPowerUp.initialize({
                   })
                   .then(function(res){
                     return t.set('card', 'private', {
-                      memberId: res.id
+                      memberId: res.id,
+                      canSubtractNTH: true
                     })
                   })
                   .then(function(){
@@ -57,8 +58,14 @@ TrelloPowerUp.initialize({
                     return t.set('card', 'shared', {
                       votingMembers: myArray,
                       nth: !isNew && data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
-                      imp: !isNew ? ((data.card.shared.imp - 1) > 0) && data.card.shared.imp - 1 || 0 : (data.card.shared.imp),
-                      cri: !isNew ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
+                      imp: (!isNew && data.card.private.canSubtactIMP) ? ((data.card.shared.imp - 1) > 0) && data.card.shared.imp - 1 || 0 : (data.card.shared.imp),
+                      cri: (!isNew && data.card.private.canSubtactCRI) ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
+                    })
+                  })
+                  .then(function(){
+                    t.set('card','private', {
+                      canSubtractIMP:false,
+                      canSubtractCRI:false,
                     })
                   })
                   .then(function(){
@@ -78,7 +85,9 @@ TrelloPowerUp.initialize({
                 })
                 .then(function(res){
                   return t.set('card', 'private', {
-                    memberId: res.id
+                    memberId: res.id,
+                    canSubtractIMP: true
+
                   })
                 })
                 .then(function(){
@@ -106,10 +115,16 @@ TrelloPowerUp.initialize({
                   console.log(isNew, data.card.private.selected, data.card.shared.nth - 1 ,data.card.shared.nth,data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth);
                   return t.set('card', 'shared', {
                     votingMembers: myArray,
-                    nth: !isNew ? ((data.card.shared.nth - 1) > 0) && data.card.shared.nth - 1 || 0 : (data.card.shared.nth),
+                    nth: (!isNew && data.card.private.canSubtractNTH) ? ((data.card.shared.nth - 1) > 0) && data.card.shared.nth - 1 || 0 : (data.card.shared.nth),
                     imp: !isNew && data.card.private.selected === 'imp' ? (data.card.shared && data.card.shared.imp || 1) : data.card.shared && data.card.shared.imp + 1 || 1,
-                    cri: !isNew ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
+                    cri: (!isNew && data.card.private.canSubtractCRI) ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
                     // cri: !isNew ? data.card.shared.cri - 1 : data.card.shared.cri
+                  })
+                })
+                .then(function(){
+                  t.set('card','private', {
+                    canSubtractNTH:false,
+                    canSubtractCRI:false,
                   })
                 })
                 .then(function(){
@@ -131,7 +146,9 @@ TrelloPowerUp.initialize({
                 })
                 .then(function(res){
                   return t.set('card', 'private', {
-                    memberId: res.id
+                    memberId: res.id,
+                    canSubtractCRI: true
+
                   })
                 })
                 .then(function(){
@@ -156,17 +173,18 @@ TrelloPowerUp.initialize({
                     myArray = data.card.shared.votingMembers
                   }
 
-                  var hasDeductNTH = data.card.shared.hasDeductNTH ? true: false
-                  var hasDeductIMP = data.card.shared.hasDeductIMP ? true: false
-
                   console.log(isNew,  data.card.private.selected);
                   return t.set('card', 'shared', {
                     votingMembers: myArray,
-                    nth: !isNew && !hasDeductNTH ? ((data.card.shared.nth - 1) > 0) && data.card.shared.nth - 1 || 0 : (data.card.shared.nth),
-                    imp: !isNew && !hasDeductIMP ? ((data.card.shared.imp - 1) > 0) && data.card.shared.imp - 1 || 0 : (data.card.shared.imp),
+                    nth: (!isNew && data.card.private.canSubtractNTH) ? ((data.card.shared.nth - 1) > 0) && data.card.shared.nth - 1 || 0 : (data.card.shared.nth),
+                    imp: (!isNew && data.card.private.canSubtractIMP) ? ((data.card.shared.imp - 1) > 0) && data.card.shared.imp - 1 || 0 : (data.card.shared.imp),
                     cri: !isNew && data.card.private.selected === 'cri' ? (data.card.shared && data.card.shared.cri || 1) : data.card.shared && data.card.shared.cri + 1 || 1,
-                    hasDeductNTH: !isNew ? true : false,
-                    hasDeductIMP: !isNew ? true: false
+                  })
+                })
+                .then(function(){
+                  t.set('card','private', {
+                    canSubtractNTH:false,
+                    canSubtractIMP:false,
                   })
                 })
                 .then(function(){
