@@ -13,6 +13,13 @@ TrelloPowerUp.initialize({
                 text: "Nice to have",
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
+                    var a = {
+                      currentSelection: "Nice to have",
+                      pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
+                    }
+
+                    console.log('here is a', a);
+
                     return t.set("member", "private", {
                       currentSelection: "Nice to have",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
