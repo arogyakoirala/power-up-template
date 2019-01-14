@@ -34,7 +34,7 @@ TrelloPowerUp.initialize({
                   return t.getAll();
                 })
                 .then(function(data){
-                  console.log(data, data.card.private.memberId, data.card.shared.votingMembers.includes(data.card.private.memberId))
+                  console.log(data, data.card.private.memberId, data.card.shared && data.card.shared.votingMembers && !data.card.shared.votingMembers.includes(data.card.private.memberId))
 
                   var array = [];
                   return t.set('card', 'shared', {
