@@ -14,14 +14,14 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     var a = {
-                      currentSelection: "Nice to have",
+                      currentSelection: "nice_to_have",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                     }
 
                     console.log('here is a', a);
 
                     return t.set("member", "private", {
-                      currentSelection: "Nice to have",
+                      currentSelection: "nice_to_have",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                     }).then(function(){
                       return t.getAll();
@@ -41,7 +41,7 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("member", "private", {
-                      currentSelection: "Important",
+                      currentSelection: "important",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                     }).then(function(){
                       return t.getAll();
@@ -61,7 +61,7 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("member", "private", {
-                      currentSelection: "Critical",
+                      currentSelection: "critical",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                     }).then(function(){
                       return t.getAll();
