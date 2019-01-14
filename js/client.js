@@ -2,7 +2,7 @@ TrelloPowerUp.initialize({
   "card-badges": function(t, opts){
     return t.getAll().then(function(res){
       return [{
-        text: 'Critical: '+ res.card.shared.critical ? res.card.shared.critical:0,
+        text: 'Critical:',
         color:'red',
       }]
     })
