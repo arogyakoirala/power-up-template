@@ -33,7 +33,7 @@ TrelloPowerUp.initialize({
                     return t.getAll()
                   }).then(function(allValues){
                     return t.set('card', 'shared', {
-                      nth: (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? allValues.member.private.selection === "nth" ? allValues.card.shared.nth: allValues.card.shared.nth + allValues.card.private.nth : 1,
+                      nth: (allValues.card && allValues.card.shared && allValues.card.shared.nth) && (allValues.member.private.selection === "nth") ?  allValues.card.shared.nth: (allValues.card && allValues.card.shared && allValues.card.shared.nth) && !(allValues.member.private.selection === "nth") ? allValues.card.shared.nth + allValues.card.private.nth : 1,
                       imp: (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? allValues.card.shared.imp  : 0,
                       cri: (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? allValues.card.shared.cri : 0,
 
@@ -63,7 +63,7 @@ TrelloPowerUp.initialize({
 
                     return t.set('card', 'shared', {
                       nth: (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? allValues.card.shared.nth : 0,
-                      imp: (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? allValues.member.private.selection === "imp" ? allValues.card.shared.imp: allValues.card.shared.imp + allValues.card.private.imp : 1,
+                      imp: (allValues.card && allValues.card.shared && allValues.card.shared.imp) && (allValues.member.private.selection === "imp") ?  allValues.card.shared.imp: (allValues.card && allValues.card.shared && allValues.card.shared.imp) && !(allValues.member.private.selection === "imp") ? allValues.card.shared.imp + allValues.card.private.imp : 1,
                       cri: (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? allValues.card.shared.cri : 0,
                     })
                   }).then(function(){
@@ -90,8 +90,7 @@ TrelloPowerUp.initialize({
                     return t.set('card', 'shared', {
                       nth: (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? allValues.card.shared.nth: 0,
                       imp: (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? allValues.card.shared.imp: 0,
-                      cri: (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? allValues.member.private.selection === "cri" ? allValues.card.shared.cri: allValues.card.shared.cri + allValues.card.private.cri : 1,
-
+                      cri: (allValues.card && allValues.card.shared && allValues.card.shared.cri) && (allValues.member.private.selection === "cri") ?  allValues.card.shared.cri: (allValues.card && allValues.card.shared && allValues.card.shared.cri) && !(allValues.member.private.selection === "cri") ? allValues.card.shared.cri + allValues.card.private.cri : 1,
                     })
                   }).then(function(){
                     t.closePopup();
