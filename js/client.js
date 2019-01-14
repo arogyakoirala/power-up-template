@@ -21,9 +21,12 @@ TrelloPowerUp.initialize({
               callback: function(t,opts){
                 return t.set('card', 'private', {
                   selected: 'nth',
-                  nth:1,
-                  imp:0,
-                  cri:0
+                })
+                .then(function(){
+                  return t.member('id')
+                })
+                .then(function(res){
+                  console.log('member', res)
                 })
                 .then(function(){
                   return t.getAll();
@@ -48,9 +51,6 @@ TrelloPowerUp.initialize({
               callback: function(t,opts){
                 return t.set('card', 'private', {
                   selected: 'imp',
-                  nth:0,
-                  imp:1,
-                  cri:0
                 })
                 .then(function(){
                   return t.getAll();
