@@ -1,15 +1,4 @@
 TrelloPowerUp.initialize({
-  "card-badges": function(t, opts){
-    return t.getAll().then(function(res){
-      var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "0";
-
-      console.log(criticaltext);
-      return [{
-        text: 'Critical:',
-        color:'red',
-      }]
-    })
-  },
   "card-detail-badges": function(t, opts) {
     return t.get("member", "private", "currentSelection").then(function(res){
       return [{
@@ -83,6 +72,17 @@ TrelloPowerUp.initialize({
             ]
           })
         }
+      }]
+    })
+  },
+  "card-badges": function(t, opts){
+    return t.getAll().then(function(res){
+      var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "0";
+
+      console.log(criticaltext);
+      return [{
+        text: 'Critical:',
+        color:'red',
       }]
     })
   }
