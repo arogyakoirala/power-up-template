@@ -12,7 +12,7 @@ TrelloPowerUp.initialize({
     return t.get('card', 'private', 'selected').then(function(selected){
       return [{
         title: 'How important is this feature?',
-        text: selected || textMapper.unspecified,
+        text: textMapper[selected] || textMapper.unspecified,
         callback: function(t, opts) {
           return t.popup({
             title: 'Choose an option',
@@ -38,7 +38,33 @@ TrelloPowerUp.initialize({
                   t.closePopup();
                 });
               }
-            }]
+            },
+
+            {
+              text: textMapper.imp,
+              callback: function(t,opts){
+                return t.set('card', 'private', {
+                  selected: 'imp',
+                  nth:0,
+                  imp:1,
+                  cri:0
+                })
+                .then(function(){
+                  return t.getAll();
+                })
+                .then(function(data){
+                  return t.set('card', 'shared', {
+                    imp: data.card.private.selected === 'imp' ? (data.card.shared.imp || 0) : (data.card.shared.imp || 0) + 1,
+                    // [data.card.private.selected]: (data.card.shared[data.card.private.selected]-1)||0,
+                  })
+                })
+                .then(function(){
+                  t.closePopup();
+                });
+              }
+            }
+
+          ]
           })
         }
       }]
