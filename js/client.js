@@ -1,4 +1,3 @@
-var t = window.TrelloPowerUp.iframe();
 
 
 TrelloPowerUp.initialize({
