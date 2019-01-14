@@ -1,8 +1,6 @@
 TrelloPowerUp.initialize({
   "card-detail-badges": function(t, opts) {
-    return t.set("card", "shared", {}).then(function{
-      return t.get("member", "private", "currentSelection")
-    }).then(function(res){
+    return t.get("member", "private", "currentSelection").then(function(res){
       return [{
         title: "Set Priority",
         text:res || 'No priority set',
