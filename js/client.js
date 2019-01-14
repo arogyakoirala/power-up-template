@@ -58,7 +58,7 @@ TrelloPowerUp.initialize({
 
                     return t.set('card', 'shared', {
                       votingMembers: myArray,
-                      nth: !isNew && data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
+                      nth: !isNew && data.card.private.selected === 'nth' && !data.card.private.hasSubtractedNTH ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
                       imp: (!isNew && data.card.private.canSubtractIMP) ? ((data.card.shared.imp - 1) > 0) && data.card.shared.imp - 1 || 0 : (data.card.shared.imp),
                       cri: (!isNew && data.card.private.canSubtractCRI) ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
                     })
@@ -67,6 +67,8 @@ TrelloPowerUp.initialize({
                     t.set('card','private', {
                       canSubtractIMP:false,
                       canSubtractCRI:false,
+                      hasSubtractedIMP: true,
+                      hasSubtractedCRI: true,
                     })
                   })
                   .then(function(){
@@ -117,7 +119,7 @@ TrelloPowerUp.initialize({
                   return t.set('card', 'shared', {
                     votingMembers: myArray,
                     nth: (!isNew && data.card.private.canSubtractNTH) ? ((data.card.shared.nth - 1) > 0) && data.card.shared.nth - 1 || 0 : (data.card.shared.nth),
-                    imp: !isNew && data.card.private.selected === 'imp' ? (data.card.shared && data.card.shared.imp || 1) : data.card.shared && data.card.shared.imp + 1 || 1,
+                    imp: !isNew && data.card.private.selected === 'imp' && !data.card.private.hasSubtractedIMP ? (data.card.shared && data.card.shared.imp || 1) : data.card.shared && data.card.shared.imp + 1 || 1,
 
                     cri: (!isNew && data.card.private.canSubtractCRI) ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
                     // cri: !isNew ? data.card.shared.cri - 1 : data.card.shared.cri
@@ -127,6 +129,8 @@ TrelloPowerUp.initialize({
                   t.set('card','private', {
                     canSubtractNTH:false,
                     canSubtractCRI:false,
+                    hasSubtractedNTH: true,
+                    hasSubtractedCRI: true,
                   })
                 })
                 .then(function(){
@@ -181,7 +185,7 @@ TrelloPowerUp.initialize({
                     votingMembers: myArray,
                     nth: (!isNew && data.card.private.canSubtractNTH) ? ((data.card.shared.nth - 1) > 0) && data.card.shared.nth - 1 || 0 : (data.card.shared.nth),
                     imp: (!isNew && data.card.private.canSubtractIMP) ? ((data.card.shared.imp - 1) > 0) && data.card.shared.imp - 1 || 0 : (data.card.shared.imp),
-                    cri: !isNew && data.card.private.selected === 'cri' ? (data.card.shared.cri || 1) : (data.card.shared.cri + 1 || 1),
+                    cri: !isNew && data.card.private.selected === 'cri' && !data.card.private.hasSubtractedCRI ? (data.card.shared.cri || 1) : (data.card.shared.cri + 1 || 1),
 
                   })
                 })
@@ -189,6 +193,8 @@ TrelloPowerUp.initialize({
                   t.set('card','private', {
                     canSubtractNTH:false,
                     canSubtractIMP:false,
+                    hasSubtractedIMP: true,
+                    hasSubtractedNTH: true,
                   })
                 })
                 .then(function(){
