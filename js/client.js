@@ -14,15 +14,15 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     console.log('res on nicetohave', res)
-                    return t.set("member", "private", {
-                      currentSelection: "nice_to_have",
-                      pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
+                    return t.set("card", "shared", {
+                      nice_to_have: res.card.shared.nice_to_have ? Number(res.card.shared.nice_to_have)+1: 1,
+                      [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
-                      t.set("card", "shared", {
-                          nice_to_have: res.card.shared.nice_to_have ? Number(res.card.shared.nice_to_have)+1: 1,
-                          [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
+                      t.set("member", "private", {
+                        currentSelection: "nice_to_have",
+                        pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                       })
                     }).then(function(){
                       return t.closePopup();
@@ -34,15 +34,15 @@ TrelloPowerUp.initialize({
                 text: "Important",
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
-                    return t.set("member", "private", {
-                      currentSelection: "important",
-                      pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
+                    return t.set("card", "shared", {
+                      important: res.card.shared.important ? Number(res.card.shared.important)+1: 1,
+                      [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
-                      t.set("card", "shared", {
-                          important: res.card.shared.important ? Number(res.card.shared.important)+1: 1,
-                          [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
+                      t.set("member", "private", {
+                        currentSelection: "important",
+                        pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                       })
                     }).then(function(){
                       return t.closePopup();
@@ -54,15 +54,15 @@ TrelloPowerUp.initialize({
                 text:"Critical",
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
-                    return t.set("member", "private", {
-                      currentSelection: "critical",
-                      pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
+                    return t.set("card", "shared", {
+                      critical: res.card.shared.critical ? Number(res.card.shared.critical)+1: 1,
+                      [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
-                      t.set("card", "shared", {
-                          critical: res.card.shared.critical ? Number(res.card.shared.critical)+1: 1,
-                          [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
+                      t.set("member", "private", {
+                        currentSelection: "critical",
+                        pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                       })
                     }).then(function(){
                       return t.closePopup();
