@@ -13,13 +13,7 @@ TrelloPowerUp.initialize({
                 text: "Nice to have",
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
-                    var a = {
-                      currentSelection: "nice_to_have",
-                      pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
-                    }
-
-                    console.log('here is a', a);
-
+                    console.log('res on nicetohave', res)
                     return t.set("member", "private", {
                       currentSelection: "nice_to_have",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
@@ -84,10 +78,8 @@ TrelloPowerUp.initialize({
   },
   "card-badges": function(t, opts){
     return t.getAll().then(function(res){
-      console.log('here is res',res);
       var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "0";
 
-      console.log(criticaltext);
       return [{
         text: 'Critical:',
         color:'red',
