@@ -53,12 +53,19 @@ TrelloPowerUp.initialize({
                       myArray = data.card.shared.votingMembers
                     }
 
+                    var hasDeductCRI = data.card.shared.hasDeductCRI ? true: false
+                    var hasDeductIMP = data.card.shared.hasDeductIMP ? true: false
+
+
                     console.log(isNew, data.card.private.selected);
                     return t.set('card', 'shared', {
                       votingMembers: myArray,
                       nth: !isNew && data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
                       imp: !isNew ? ((data.card.shared.imp - 1) > 0) && data.card.shared.imp - 1 || 0 : (data.card.shared.imp),
                       cri: !isNew ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
+                      hasDeductCRI: !isNew ? true : false,
+                      hasDeductIMP: !isNew ? true: false
+
                     })
                   })
                   .then(function(){
@@ -103,12 +110,17 @@ TrelloPowerUp.initialize({
                     myArray = data.card.shared.votingMembers
                   }
 
+                  var hasDeductNTH = data.card.shared.hasDeductNTH ? true: false
+                  var hasDeductCRI = data.card.shared.hasDeductCRI ? true: false
+
                   console.log(isNew, data.card.private.selected, data.card.shared.nth - 1 ,data.card.shared.nth,data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth);
                   return t.set('card', 'shared', {
                     votingMembers: myArray,
                     nth: !isNew ? ((data.card.shared.nth - 1) > 0) && data.card.shared.nth - 1 || 0 : (data.card.shared.nth),
                     imp: !isNew && data.card.private.selected === 'imp' ? (data.card.shared && data.card.shared.imp || 1) : data.card.shared && data.card.shared.imp + 1 || 1,
                     cri: !isNew ? ((data.card.shared.cri - 1) > 0) && data.card.shared.cri - 1 || 0 : (data.card.shared.cri),
+                    hasDeductNTH: !isNew ? true : false,
+                    hasDeductCRI: !isNew ? true: false
                     // cri: !isNew ? data.card.shared.cri - 1 : data.card.shared.cri
                   })
                 })
