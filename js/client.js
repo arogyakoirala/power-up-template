@@ -84,7 +84,7 @@ TrelloPowerUp.initialize({
       var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "0";
 
       return [{
-        text: 'Critical:',
+        text: criticaltext,
         color:'red',
       }]
     })
