@@ -21,7 +21,8 @@ TrelloPowerUp.initialize({
                       nice_to_have: Number(res)+1,
                       [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
                     }
-                  ).then(function(){
+                  )
+                }).then(function(){
                       t.closePopup();
                     })
                   })
@@ -35,7 +36,8 @@ TrelloPowerUp.initialize({
                       pastSelection: res.card.shared.currentSelection,
                       important: Number(res)+1,
                       [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-                    }
+                    })
+                  }
                   ).then(function(){
                       t.closePopup();
                     })
@@ -51,8 +53,8 @@ TrelloPowerUp.initialize({
                       pastSelection: res.card.shared.currentSelection,
                       critical: Number(res)+1,
                       [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-                    }
-                  ).then(function(){
+                    })
+                  }).then(function(){
                       t.closePopup();
                     })
                   })
