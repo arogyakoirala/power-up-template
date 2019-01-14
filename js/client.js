@@ -64,7 +64,7 @@ TrelloPowerUp.initialize({
                       cri: (allValues.card && allValues.car.shared.cri) ? allValues.car.shared.cri + allValues.car.private.cri : 0,
 
                     })
-                  })..then(function(){
+                  }).then(function(){
                     t.closePopup();
                   })
                 }
@@ -91,7 +91,7 @@ TrelloPowerUp.initialize({
                       nth: (allValues.card && allValues.car.shared.cri) ? allValues.member.private.selection === "cri" ? allValues.car.shared.cri: allValues.car.shared.cri + allValues.car.private.cri : 1,
 
                     })
-                  })..then(function(){
+                  }).then(function(){
                     t.closePopup();
                   })
                 }
