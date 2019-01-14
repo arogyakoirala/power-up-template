@@ -1,4 +1,12 @@
 TrelloPowerUp.initialize({
+  "card-badges": function(t, opts){
+    return t.getAll().then(function(res){
+      return [{
+        text: 'Critical: '+ res.card.shared.critical ? res.card.shared.critical:0,
+        color:'red',
+      }]
+    })
+  },
   "card-detail-badges": function(t, opts) {
     return t.get("member", "private", "currentSelection").then(function(res){
       return [{
@@ -14,13 +22,13 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("member", "private", {
-                      currentSelection: "nice_to_have",
+                      currentSelection: "Nice to have",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
                       t.set("card", "shared", {
-                          nice_to_have: res.card.shared.nice_to_have ? Number(es.card.shared.nice_to_have)+1: 1,
+                          nice_to_have: res.card.shared.nice_to_have ? Number(res.card.shared.nice_to_have)+1: 1,
                           [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                       })
                     }).then(function(){
@@ -34,13 +42,13 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("member", "private", {
-                      currentSelection: "important",
+                      currentSelection: "Important",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
                       t.set("card", "shared", {
-                          nice_to_have: res.card.shared.important ? Number(es.card.shared.important)+1: 1,
+                          nice_to_have: res.card.shared.important ? Number(res.card.shared.important)+1: 1,
                           [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                       })
                     }).then(function(){
@@ -54,13 +62,13 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("member", "private", {
-                      currentSelection: "critical",
+                      currentSelection: "Critical",
                       pastSelection: res.member.private.currentSelection ? res.member.private.currentSelection : 'No priority set',
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
                       t.set("card", "shared", {
-                          nice_to_have: res.card.shared.critical ? Number(es.card.shared.critical)+1: 1,
+                          nice_to_have: res.card.shared.critical ? Number(res.card.shared.critical)+1: 1,
                           [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                       })
                     }).then(function(){
