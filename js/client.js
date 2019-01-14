@@ -10,60 +10,89 @@ TrelloPowerUp.initialize({
         color:null,
         callback: function(t, opts) {
           return t.popup({
-              title: "Set priority",
-              items: [{
+            title: 'Set Priority',
+            items: [
+              {
                 text: "Nice to have",
-                callback: function (t, opts) {
+                callback: function(t, opts) {
                   return t.getAll().then(function(res){
-                    t.set("card", "shared", {
+                    return t.set("card", "shared", {
                       currentSelection:"nice_to_have",
                       pastSelection: res.card.shared.currentSelection,
                       nice_to_have: Number(res)+1,
                       [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-                    }
-                  )
-                }).then(function(){
-                      t.closePopup();
+                    }).then(function(){
+                      return t.closePopup();
                     })
                   })
                 }
-              }, {
+              },
+              {
                 text: "Important",
-                callback: function (t, opts) {
-                  return t.getAll().then(function(res){
-                    t.set("card", "shared", {
-                      currentSelection:"important",
-                      pastSelection: res.card.shared.currentSelection,
-                      important: Number(res)+1,
-                      [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-                    })
-                  }
-                  ).then(function(){
-                      t.closePopup();
-                    })
-                  })
-
-                }
-              }, {
-                text: "Critical",
-                callback: function (t, opts) {
-                  return t.getAll().then(function(res){
-                    t.set("card", "shared", {
-                      currentSelection:"critical",
-                      pastSelection: res.card.shared.currentSelection,
-                      critical: Number(res)+1,
-                      [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-                    })
-                  }).then(function(){
-                      t.closePopup();
-                    })
-                  })
-                }
-              }]
-            });
+              },
+              {
+                text:"Critical",
+              }
+            ]
+          })
         }
       }]
     })
   }
 
 })
+
+
+// return t.popup({
+//     title: "Set priority",
+//     items: [{
+//       text: "Nice to have",
+//       callback: function (t, opts) {
+//         return t.getAll().then(function(res){
+//           t.set("card", "shared", {
+//             currentSelection:"nice_to_have",
+//             pastSelection: res.card.shared.currentSelection,
+//             nice_to_have: Number(res)+1,
+//             [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
+//           }
+//         )
+//       }).then(function(){
+//             t.closePopup();
+//           })
+//         })
+//       }
+//     }, {
+//       text: "Important",
+//       callback: function (t, opts) {
+//         return t.getAll().then(function(res){
+//           t.set("card", "shared", {
+//             currentSelection:"important",
+//             pastSelection: res.card.shared.currentSelection,
+//             important: Number(res)+1,
+//             [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
+//           })
+//         }
+//         ).then(function(){
+//             t.closePopup();
+//           })
+//         })
+//
+//       }
+//     }, {
+//       text: "Critical",
+//       callback: function (t, opts) {
+//         return t.getAll().then(function(res){
+//           t.set("card", "shared", {
+//             currentSelection:"critical",
+//             pastSelection: res.card.shared.currentSelection,
+//             critical: Number(res)+1,
+//             [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
+//           })
+//         }).then(function(){
+//             t.closePopup();
+//           })
+//         })
+//       }
+//     }]
+//   });
+// }
