@@ -1,3 +1,7 @@
+var t = window.TrelloPowerUp.iframe();
+
+return t.remove('card', 'shared', ['nice_to_have', 'important', 'critical', 'Nice to have', 'Important', 'Critical', 'vote', 'Nothing selected', 'currentSelection', 'pastSelection']);
+
 TrelloPowerUp.initialize({
   "card-detail-badges": function(t, opts) {
     return t.get("member", "private", "currentSelection").then(function(res){
