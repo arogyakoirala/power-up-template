@@ -14,7 +14,7 @@ TrelloPowerUp.initialize({
               items: [{
                 text: "Nice to have",
                 callback: function (t, opts) {
-                  return t.getAll().then(fuction(res){
+                  return t.getAll().then(function(res){
                     t.set("card", "shared", {
                       currentSelection:"nice_to_have",
                       pastSelection: res.card.shared.currentSelection,
@@ -29,7 +29,7 @@ TrelloPowerUp.initialize({
               }, {
                 text: "Important",
                 callback: function (t, opts) {
-                  return t.getAll().then(fuction(res){
+                  return t.getAll().then(function(res){
                     t.set("card", "shared", {
                       currentSelection:"important",
                       pastSelection: res.card.shared.currentSelection,
@@ -45,7 +45,7 @@ TrelloPowerUp.initialize({
               }, {
                 text: "Critical",
                 callback: function (t, opts) {
-                  return t.getAll().then(fuction(res){
+                  return t.getAll().then(function(res){
                     t.set("card", "shared", {
                       currentSelection:"critical",
                       pastSelection: res.card.shared.currentSelection,
