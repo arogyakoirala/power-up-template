@@ -34,28 +34,28 @@ TrelloPowerUp.initialize({
                   return t.getAll();
                 })
                 .then(function(data){
-
-                  var myArray = [];
-
-                  if(!data.card.shared && !data.card.shared.votingMembers ) {
-                    myArray.push(data.card.private.memberId)
-                  }
-
-                  console.log( myArray);
-                  return t.set('card', 'shared', {
-                    votingMembers: data.card.shared && data.card.shared.votingMembers && !data.card.shared.votingMembers.includes(data.card.private.memberId) && data.card.shared.votingMembers.push(data.card.private.memberId) || myArray,
-                  })
-                })
-                .then(function(){
-                  return t.getAll();
-                })
-                .then(function(data){
                   console.log(data.card);
 
                   return t.set('card', 'shared', {
                     nth: data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
                     imp: data.card.shared && data.card.shared.imp && data.card.shared.imp - 1 || 0
                     // [data.card.private.selected]: (data.card && data.card.shared && data.card.private.selected === 'nth') ? (data.card.shared[data.card.private.selected]-1)||1: 0,
+                  })
+                })
+                .then(function(){
+                  return t.getAll();
+                })
+                .then(function(data){
+                  var myArray = [];
+                  if(!data.card.shared.votingMembers ) {
+                    myArray.push(data.card.private.memberId)
+                  } else if (!data.card.shared.votingMembers.includes(data.card.private.memberId)){
+                    myArray=  data.card.shared.votingMembers;
+                    myArray.push(data.card.private.memberId)
+                  }
+                  console.log( myArray);
+                  return t.set('card', 'shared', {
+                    votingMembers: myArray,
                   })
                 })
                 .then(function(){
