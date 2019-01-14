@@ -44,7 +44,7 @@ TrelloPowerUp.initialize({
                   return t.getAll();
                 })
                 .then(function(data){
-                  console.log(data.card.shared.votingMembers);
+                  console.log(data.card);
 
                   return t.set('card', 'shared', {
                     nth: data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
