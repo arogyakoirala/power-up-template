@@ -26,7 +26,7 @@ TrelloPowerUp.initialize({
                   return t.member('id')
                 })
                 .then(function(member){
-                  t.set('card', 'private', {
+                  return t.set('card', 'private', {
                     memberId: member.id
                   })
                 })
