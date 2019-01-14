@@ -31,7 +31,7 @@ TrelloPowerUp.initialize({
                 .then(function(data){
                   return t.set('card', 'shared', {
                     nth: data.card.private.selected === 'nth' ? (data.card.shared.nth || 0) : (data.card.shared.nth || 0) + 1,
-                    [data.card.private.selected]: data.card.shared ? (data.card.shared[data.card.private.selected]-1)||0: 0,
+                    [data.card.private.selected]: (data.card.shared!==undefined) ? (data.card.shared[data.card.private.selected]-1)||0: 0,
                   })
                 })
                 .then(function(){
@@ -55,7 +55,7 @@ TrelloPowerUp.initialize({
                 .then(function(data){
                   return t.set('card', 'shared', {
                     imp: data.card.private.selected === 'imp' ? (data.card.shared.imp || 0) : (data.card.shared.imp || 0) + 1,
-                    [data.card.private.selected]: data.card.shared ? (data.card.shared[data.card.private.selected]-1)||0: 0,
+                    [data.card.private.selected]: (data.card.shared!==undefined) ? (data.card.shared[data.card.private.selected]-1)||0: 0,
                   })
                 })
                 .then(function(){
