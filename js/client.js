@@ -30,7 +30,7 @@ TrelloPowerUp.initialize({
                 })
                 .then(function(data){
                   return t.set('card', 'shared', {
-                    nth: data.card.private.selected === nth ? (data.card.shared.nth || 0) : (data.card.shared.nth || 0) + 1,
+                    nth: data.card.private.selected === 'nth' ? (data.card.shared.nth || 0) : (data.card.shared.nth || 0) + 1,
                     // [data.card.private.selected]: (data.card.shared[data.card.private.selected]-1)||0,
                   })
                 })
