@@ -47,7 +47,7 @@ TrelloPowerUp.initialize({
                       return t.getAll();
                     }).then(function(res){
                       t.set("card", "shared", {
-                          nice_to_have: res.card.shared.important ? Number(res.card.shared.important)+1: 1,
+                          important: res.card.shared.important ? Number(res.card.shared.important)+1: 1,
                           [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                       })
                     }).then(function(){
@@ -67,7 +67,7 @@ TrelloPowerUp.initialize({
                       return t.getAll();
                     }).then(function(res){
                       t.set("card", "shared", {
-                          nice_to_have: res.card.shared.critical ? Number(res.card.shared.critical)+1: 1,
+                          critical: res.card.shared.critical ? Number(res.card.shared.critical)+1: 1,
                           [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
                       })
                     }).then(function(){
