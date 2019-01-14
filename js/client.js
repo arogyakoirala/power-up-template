@@ -25,14 +25,25 @@ TrelloPowerUp.initialize({
                 .then(function(){
                   return t.member('id')
                 })
-                .then(function(res){
-                  console.log('member', res)
+                .then(function(member){
+                  t.set('card', 'private', {
+                    memberId: member.id
+                  })
                 })
                 .then(function(){
                   return t.getAll();
                 })
                 .then(function(data){
-                  console.log([data.card.private.selected],(data.card && data.card.shared && data.card.private.selected !== 'nth') ? (data.card.shared[data.card.private.selected]-1)||0: 0);
+                  var array = [];
+                  return t.set('card', 'shared', {
+                    votingMembers: data.card.shared && data.card.shared.votingMembers && !data.card.shared.votingMembers.includes(data.card.private.memberId) && data.card.shared.votingMembers.push(data.card.private.memberId) || array.push[memberId];
+                  })
+                })
+                .then(function(){
+                  return t.getAll();
+                })
+                .then(function(data){
+                  console.log(data.card.shared.votingMembers);
 
                   return t.set('card', 'shared', {
                     nth: data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
