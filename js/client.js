@@ -37,7 +37,7 @@ TrelloPowerUp.initialize({
                   console.log(data.card);
 
                   return t.set('card', 'shared', {
-                    // nth: data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
+                    nth: data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
                     // imp: data.card.shared && data.card.shared.imp && data.card.shared.imp - 1 || 0
                     // [data.card.private.selected]: (data.card && data.card.shared && data.card.private.selected === 'nth') ? (data.card.shared[data.card.private.selected]-1)||1: 0,
                   })
@@ -55,10 +55,12 @@ TrelloPowerUp.initialize({
                   if(!data.card.shared.votingMembers ) {
                     myArray.push(data.card.private.memberId)
                   } else if (!data.card.shared.votingMembers.includes(data.card.private.memberId)){
-                    myArray=  data.card.shared.votingMembers;
+                    myArray =  data.card.shared.votingMembers;
                     myArray.push(data.card.private.memberId)
+                  } else {
+                    myArray = data.card.shared.votingMembers
                   }
-                  console.log(!isNew && data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1);
+                  console.log(!isNew && data.card.private.selected === 'nth', (data.card.shared && data.card.shared.nth || 1), data.card.shared && data.card.shared.nth + 1 || 1 );
                   return t.set('card', 'shared', {
                     votingMembers: myArray,
                     nth: !isNew && data.card.private.selected === 'nth' ? (data.card.shared && data.card.shared.nth || 1) : data.card.shared && data.card.shared.nth + 1 || 1,
