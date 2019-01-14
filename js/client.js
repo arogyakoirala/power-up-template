@@ -24,9 +24,9 @@ TrelloPowerUp.initialize({
                   })
                   .then(function(allValues){
                     t.set('card', 'private', {
-                      nth: (allValues.card && allValues.card.private.nth) ? allValues.member.private.selection === "nth" ? allValues.card.private.nth: allValues.card.private.nth+1: 1,
-                      imp: (allValues.card && allValues.card.private.imp) ? allValues.card.private.imp-1: 0,
-                      cri: (allValues.card && allValues.card.private.cri) ? allValues.card.private.cri-1: 0,
+                      nth: (allValues.card && allValues.card.private && allValues.card.private.nth) ? allValues.member.private.selection === "nth" ? allValues.card.private.nth: allValues.card.private.nth+1: 1,
+                      imp: (allValues.card && allValues.card.private && allValues.card.private.imp) ? allValues.card.private.imp-1: 0,
+                      cri: (allValues.card && allValues.card.private && allValues.card.private.cri) ? allValues.card.private.cri-1: 0,
                     })
                   }).then(function(){
                     t.getAll()
@@ -51,9 +51,9 @@ TrelloPowerUp.initialize({
                   })
                   .then(function(allValues){
                     t.set('card', 'private', {
-                      nth: (allValues.card && allValues.card.private.nth) ? allValues.card.private.nth-1: 0,
-                      imp: (allValues.card && allValues.card.private.imp) ? allValues.member.private.selection === "imp" ? allValues.card.private.imp: allValues.card.private.imp+1: 1,
-                      cri: (allValues.card && allValues.card.private.cri) ? allValues.card.private.cri-1: 0,
+                      nth: (allValues.card && allValues.card.private && allValues.card.private.nth) ? allValues.card.private.nth-1: 0,
+                      imp: (allValues.card && allValues.card.private && allValues.card.private.imp) ? allValues.member.private.selection === "imp" ? allValues.card.private.imp: allValues.card.private.imp+1: 1,
+                      cri: (allValues.card && allValues.card.private && allValues.card.private.cri) ? allValues.card.private.cri-1: 0,
                     })
                   }).then(function(){
                     t.getAll()
@@ -78,9 +78,9 @@ TrelloPowerUp.initialize({
                   })
                   .then(function(allValues){
                     t.set('card', 'private', {
-                      nth: (allValues.card && allValues.card.private.nth) ? allValues.card.private.nth-1: 0,
-                      imp: (allValues.card && allValues.card.private.imp) ? allValues.card.private.imp-1: 0,
-                      cri: (allValues.card && allValues.card.private.cri) ? allValues.member.private.selection === "cri" ? allValues.card.private.cri: allValues.card.private.cri+1: 1,
+                      nth: (allValues.card && allValues.card.private && allValues.card.private.nth) ? allValues.card.private.nth-1: 0,
+                      imp: (allValues.card && allValues.card.private && allValues.card.private.imp) ? allValues.card.private.imp-1: 0,
+                      cri: (allValues.card && allValues.card.private && allValues.card.private.cri) ? allValues.member.private.selection === "cri" ? allValues.card.private.cri: allValues.card.private.cri+1: 1,
                     })
                   }).then(function(){
                     t.getAll()
@@ -105,9 +105,9 @@ TrelloPowerUp.initialize({
                   })
                   .then(function(allValues){
                     t.set('card', 'private', {
-                      nth: (allValues.card && allValues.card.private.nth) ? allValues.card.private.nth-1: 0,
-                      imp: (allValues.card && allValues.card.private.imp) ? allValues.card.private.imp-1: 0,
-                      cri: (allValues.card && allValues.card.private.cri) ? allValues.card.private.cri-1: 0,
+                      nth: (allValues.card && allValues.card.private && allValues.card.private.nth) ? allValues.card.private.nth-1: 0,
+                      imp: (allValues.card && allValues.card.private && allValues.card.private.imp) ? allValues.card.private.imp-1: 0,
+                      cri: (allValues.card && allValues.card.private && allValues.card.private.cri) ? allValues.card.private.cri-1: 0,
                     })
                   })
                 }
@@ -121,9 +121,9 @@ TrelloPowerUp.initialize({
   },
     "card-badges": function(t, opts){
       return t.getAll().then(function(allValues){
-        var nthtext= (allValues.card && allValues.card.private.nth) ? "Nice to have: "+ String(allValues.card.private.nth): "Nice to have: 0";
-        var imptext= (allValues.card && allValues.card.private.imp )? "Important: "+ String(allValues.card.private.imp): "Important: 0";
-        var criticaltext= (allValues.card && allValues.card.private.cri) ? "Critical: "+ String(allValues.card.private.cri): "Critical: 0";
+        var nthtext= (allValues.card && allValues.card.private && allValues.card.private.nth) ? "Nice to have: "+ String(allValues.card.private.nth): "Nice to have: 0";
+        var imptext= (allValues.card && allValues.card.private && allValues.card.private.imp )? "Important: "+ String(allValues.card.private.imp): "Important: 0";
+        var criticaltext= (allValues.card && allValues.card.private && allValues.card.private.cri) ? "Critical: "+ String(allValues.card.private.cri): "Critical: 0";
 
         return [
           {
