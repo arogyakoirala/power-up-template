@@ -1,9 +1,9 @@
 TrelloPowerUp.initialize({
   "card-badges": function(t, opts){
     return t.getAll().then(function(res){
-      var criticaltext= res.card.shared.critical ? "Critical: "+String(res.card.shared.critical): "0",
+      var criticaltext= res.card.shared.critical ? "Critical: "+ String(res.card.shared.critical): "0";
 
-      console.log(criticattext);
+      console.log(criticaltext);
       return [{
         text: 'Critical:',
         color:'red',
