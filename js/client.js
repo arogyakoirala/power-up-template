@@ -2,10 +2,8 @@
 
 TrelloPowerUp.initialize({
   "card-detail-badges": function(t, opts) {
-    return t.remove("card", "shared", ["nice_to_have", "critical", "important"]).then(function(){
-      return t.get("member", "private", "currentSelection")  
-    })
-    .then(function(res){
+
+    return t.get("member", "private", "currentSelection").then(function(res){
       return [{
         title: "Set Priority",
         text:res || 'No priority set',
@@ -21,7 +19,7 @@ TrelloPowerUp.initialize({
                     console.log('res on nicetohave', res.card.shared.nice_to_have)
                     return t.set("card", "shared", {
                       [res.member.private.currentSelection]: [res.member.private.currentSelection]=="nice_to_have" ? res.card.shared.nice_to_have: Number(res.card.shared[res.member.private.currentSelection])-1
-                      nice_to_have: res.card.shared.nice_to_have ? Number(res.card.shared.nice_to_have)+1: 1,
+                      nice_to_have: (res.card.shared.nice_to_have && res.card.shared.nice_to_have > 0) ? Number(res.card.shared.nice_to_have)+1: 1,
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
@@ -41,7 +39,7 @@ TrelloPowerUp.initialize({
                   return t.getAll().then(function(res){
                     return t.set("card", "shared", {
                       [res.member.private.currentSelection]: [res.member.private.currentSelection]=="important" ? res.card.shared.important: Number(res.card.shared[res.member.private.currentSelection])-1
-                      important: res.card.shared.important ? Number(res.card.shared.important)+1: 1,
+                      important: (res.card.shared.important&&res.card.shared.important>0) ? Number(res.card.shared.important)+1: 1,
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
@@ -61,7 +59,7 @@ TrelloPowerUp.initialize({
                   return t.getAll().then(function(res){
                     return t.set("card", "shared", {
                       [res.member.private.currentSelection]: [res.member.private.currentSelection]=="critical" ? res.card.shared.critical: Number(res.card.shared[res.member.private.currentSelection])-1
-                      critical: res.card.shared.critical ? Number(res.card.shared.critical)+1: 1,
+                      critical: (res.card.shared.critical&& res.card.shared.critical>0) ? Number(res.card.shared.critical)+1: 1,
                     }).then(function(){
                       return t.getAll();
                     }).then(function(res){
