@@ -6,7 +6,7 @@ TrelloPowerUp.initialize({
     }).then(function(res){
       return [{
         title: 'Set Priority',
-        text:'tests',
+        text:res,
         color:null
       }]
     })
