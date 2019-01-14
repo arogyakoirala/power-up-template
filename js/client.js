@@ -117,6 +117,59 @@ TrelloPowerUp.initialize({
               }
             },
 
+
+
+            {
+              text: textMapper.cri,
+              callback: function(t,opts){
+                return t.set('card', 'private', {
+                  selected: 'cri',
+                })
+                .then(function(){
+                  return t.member('id')
+                })
+                .then(function(res){
+                  return t.set('card', 'private', {
+                    memberId: res.id
+                  })
+                })
+                .then(function(){
+                  return t.getAll();
+                })
+                .then(function(data){
+                  return t.set('card', 'shared', {})
+                })
+                .then(function(){
+                  return t.getAll();
+                })
+                .then(function(data){
+                  var myArray = [];
+
+                  var isNew = !data.card.shared.votingMembers || (!data.card.shared.votingMembers.includes(data.card.private.memberId));
+                  if(!data.card.shared.votingMembers ) {
+                    myArray.push(data.card.private.memberId)
+                  } else if (!data.card.shared.votingMembers.includes(data.card.private.memberId)){
+                    myArray =  data.card.shared.votingMembers;
+                    myArray.push(data.card.private.memberId)
+                  } else {
+                    myArray = data.card.shared.votingMembers
+                  }
+
+                  console.log(isNew);
+                  return t.set('card', 'shared', {
+                    votingMembers: myArray,
+                    nth: !isNew && data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth,
+                    imp: !isNew && data.card.shared && data.card.shared.imp && data.card.shared.imp - 1 || data.card.shared.imp,
+                    cri: !isNew && data.card.private.selected === 'cri' ? (data.card.shared && data.card.shared.cri || 1) : data.card.shared && data.card.shared.cri + 1 || 1,
+                  })
+                })
+                .then(function(){
+                  t.closePopup();
+                });
+              }
+            },
+
+
           ]
           })
         }
@@ -127,7 +180,7 @@ TrelloPowerUp.initialize({
         return t.getAll().then(function(allValues){
           var nthtext= (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? "Nice to have: "+ String(allValues.card.shared.nth): "Nice to have: 0";
           var imptext= (allValues.card && allValues.card.shared && allValues.card.shared.imp )? "Important: "+ String(allValues.card.shared.imp): "Important: 0";
-          // var criticaltext= (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? "Critical: "+ String(allValues.card.shared.cri): "Critical: 0";
+          var criticaltext= (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? "Critical: "+ String(allValues.card.shared.cri): "Critical: 0";
 
           return [
             {
@@ -138,10 +191,10 @@ TrelloPowerUp.initialize({
               text: imptext,
               color:'green',
             },
-            // {
-            //   text: criticaltext,
-            //   color:'red',
-            // },
+            {
+              text: criticaltext,
+              color:'red',
+            },
         ]
         })
       }
