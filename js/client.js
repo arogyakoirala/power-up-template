@@ -74,19 +74,48 @@ TrelloPowerUp.initialize({
                   selected: 'imp',
                 })
                 .then(function(){
+                  return t.member('id')
+                })
+                .then(function(res){
+                  return t.set('card', 'private', {
+                    memberId: res.id
+                  })
+                })
+                .then(function(){
                   return t.getAll();
                 })
                 .then(function(data){
+                  return t.set('card', 'shared', {})
+                })
+                .then(function(){
+                  return t.getAll();
+                })
+                .then(function(data){
+                  var myArray = [];
+
+                  var isNew = !data.card.shared.votingMembers || (!data.card.shared.votingMembers.includes(data.card.private.memberId));
+                  if(!data.card.shared.votingMembers ) {
+                    myArray.push(data.card.private.memberId)
+                  } else if (!data.card.shared.votingMembers.includes(data.card.private.memberId)){
+                    myArray =  data.card.shared.votingMembers;
+                    myArray.push(data.card.private.memberId)
+                  } else {
+                    myArray = data.card.shared.votingMembers
+                  }
+
+                  console.log(isNew);
                   return t.set('card', 'shared', {
-                    nth: data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || 0,
-                    imp: data.card.private.selected === 'imp' ? (data.card.shared && data.card.shared.imp || 1) : data.card.shared && data.card.shared.imp + 1 || 1,
+                    votingMembers: myArray,
+                    nth: !isNew && data.card.shared && data.card.shared.nth && data.card.shared.nth - 1 || data.card.shared.nth,
+                    imp: !isNew && data.card.private.selected === 'imp' ? (data.card.shared && data.card.shared.imp || 1) : data.card.shared && data.card.shared.imp + 1 || 1,
+                    cri: !isNew && data.card.shared && data.card.shared.cri && data.card.shared.cri - 1 || data.card.shared.cri
                   })
                 })
                 .then(function(){
                   t.closePopup();
                 });
               }
-            }
+            },
 
           ]
           })
