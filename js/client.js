@@ -41,7 +41,7 @@ TrelloPowerUp.initialize({
                     myArray.push(data.card.private.memberId)
                   }
 
-                  console.log(data.card.shared && !data.card.shared.votingMembers && myArray);
+                  console.log( myArray);
                   return t.set('card', 'shared', {
                     votingMembers: data.card.shared && data.card.shared.votingMembers && !data.card.shared.votingMembers.includes(data.card.private.memberId) && data.card.shared.votingMembers.push(data.card.private.memberId) || myArray,
                   })
