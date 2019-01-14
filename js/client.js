@@ -1,8 +1,11 @@
 TrelloPowerUp.initialize({
   "card-detail-badges": function(t, opts) {
-    return t.set("card", "shared", {currentSelection: "none", pastSelection: "none","nice_to_have":0, "important":0, "critical":0})
+    return t.set("card", "shared", {"nice_to_have":0, "important":0, "critical":0})
     .then(function(){
-      return t.get("card", "shared", "currentSelection");
+      return t.set("member", "private", { "currentSelection": "Nothing selected", "pastSelection": "Nothing Selected"})
+    })
+    .then(function(){
+      return t.get("member", "private", "currentSelection");
     }).then(function(res){
       return [{
         title: "Set Priority",
@@ -17,10 +20,15 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("card", "shared", {
-                      currentSelection:"nice_to_have",
-                      pastSelection: res.card.shared.currentSelection,
                       nice_to_have: Number(res)+1,
-                      [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
+                      [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
+                    }).then(function(){
+                      return t.getAll();
+                    }).then(function(res){
+                      t.set("member", "private", {
+                          currentSelection: "nice_to_have",
+                          pastSelection: res.member.private.currentSelection,
+                      })
                     }).then(function(){
                       return t.closePopup();
                     })
@@ -32,10 +40,15 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("card", "shared", {
-                      currentSelection:"important",
-                      pastSelection: res.card.shared.currentSelection,
-                      nice_to_have: Number(res)+1,
-                      [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
+                      important: Number(res)+1,
+                      [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
+                    }).then(function(){
+                      return t.getAll();
+                    }).then(function(res){
+                      t.set("member", "private", {
+                          currentSelection: "important",
+                          pastSelection: res.member.private.currentSelection,
+                      })
                     }).then(function(){
                       return t.closePopup();
                     })
@@ -47,10 +60,15 @@ TrelloPowerUp.initialize({
                 callback: function(t, opts) {
                   return t.getAll().then(function(res){
                     return t.set("card", "shared", {
-                      currentSelection:"critical",
-                      pastSelection: res.card.shared.currentSelection,
-                      nice_to_have: Number(res)+1,
-                      [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
+                      critical: Number(res)+1,
+                      [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
+                    }).then(function(){
+                      return t.getAll();
+                    }).then(function(res){
+                      t.set("member", "private", {
+                          currentSelection: "critical",
+                          pastSelection: res.member.private.currentSelection,
+                      })
                     }).then(function(){
                       return t.closePopup();
                     })
@@ -63,60 +81,23 @@ TrelloPowerUp.initialize({
       }]
     })
   }
+});
 
-})
 
-
-// return t.popup({
-//     title: "Set priority",
-//     items: [{
-//       text: "Nice to have",
-//       callback: function (t, opts) {
-//         return t.getAll().then(function(res){
-//           t.set("card", "shared", {
-//             currentSelection:"nice_to_have",
-//             pastSelection: res.card.shared.currentSelection,
-//             nice_to_have: Number(res)+1,
-//             [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-//           }
-//         )
-//       }).then(function(){
-//             t.closePopup();
-//           })
-//         })
-//       }
-//     }, {
-//       text: "Important",
-//       callback: function (t, opts) {
-//         return t.getAll().then(function(res){
-//           t.set("card", "shared", {
-//             currentSelection:"important",
-//             pastSelection: res.card.shared.currentSelection,
-//             important: Number(res)+1,
-//             [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-//           })
-//         }
-//         ).then(function(){
-//             t.closePopup();
-//           })
-//         })
-//
-//       }
-//     }, {
-//       text: "Critical",
-//       callback: function (t, opts) {
-//         return t.getAll().then(function(res){
-//           t.set("card", "shared", {
-//             currentSelection:"critical",
-//             pastSelection: res.card.shared.currentSelection,
-//             critical: Number(res)+1,
-//             [res.card.shared.currentSelection]: Number(res.card.shared.currentSelection)-1
-//           })
-//         }).then(function(){
-//             t.closePopup();
-//           })
-//         })
-//       }
-//     }]
-//   });
+// callback: function(t, opts) {
+//   return t.getAll().then(function(res){
+//     return t.set("card", "shared", {
+//       nice_to_have: Number(res)+1,
+//       [res.member.private.currentSelection]: Number(res.card.shared[res.member.private.currentSelection])-1
+//     }).then(function(){
+//       return t.getAll();
+//     }).then(function(res){
+//       t.set("member", "private", {
+//           currentSelection: "nice_to_have",
+//           pastSelection: res.member.private.currentSelection,
+//       })
+//     }).then(function(){
+//       return t.closePopup();
+//     })
+//   })
 // }
