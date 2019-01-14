@@ -222,11 +222,11 @@ TrelloPowerUp.initialize({
         },
         {
           text: imptext,
-          color: 'lime',
+          color: 'orange',
         },
         {
           text: criticaltext,
-          color: 'orange',
+          color: 'red',
         },
       ];
     });
