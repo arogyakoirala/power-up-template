@@ -220,7 +220,7 @@ TrelloPowerUp.initialize({
 
       return [
           {
-            text: total > 1 ? total + ' votes' : total + ' vote'
+            text: total > 1 ? total + ' votes' : total + ' vote',
             color: 'green',
           },
           {
