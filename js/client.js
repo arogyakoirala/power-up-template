@@ -213,9 +213,9 @@ TrelloPowerUp.initialize({
   },
   "card-badges": function (t, opts) {
     return t.getAll().then(function (allValues) {
-      var nthtext = (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? "NTH: " + String(allValues.card.shared.nth) +" - ": "";
-      var imptext = (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? "IMP: " + String(allValues.card.shared.imp) +" - ": "";
-      var criticaltext = (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? "CRI: " + String(allValues.card.shared.cri) +" - ": "";
+      var nthtext = (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? "Nice to have: " + String(allValues.card.shared.nth) +" • ": "";
+      var imptext = (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? "Important: " + String(allValues.card.shared.imp) +" • ": "";
+      var criticaltext = (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? "Critical: " + String(allValues.card.shared.cri) +" • ": "";
       var total = allValues.card.shared.nth || 0 + allValues.card.shared.imp || 0 + allValues.card.shared.cri || 0
 
       return [{
