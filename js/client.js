@@ -213,29 +213,23 @@ TrelloPowerUp.initialize({
   },
   "card-badges": function (t, opts) {
     return t.getAll().then(function (allValues) {
-      var nthtext = (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? " Nice to have: " + String(allValues.card.shared.nth): "a";
-      var imptext = (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? " Important: " + String(allValues.card.shared.imp): "b";
-      var criticaltext = (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? " Critical: " + String(allValues.card.shared.cri): "c";
+      var nthtext = (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? " Nice to have: " + String(allValues.card.shared.nth): "";
+      var imptext = (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? " Important: " + String(allValues.card.shared.imp): "";
+      var criticaltext = (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? " Critical: " + String(allValues.card.shared.cri): "";
       var total = (allValues.card.shared.nth || 0 )+ (allValues.card.shared.imp || 0) + (allValues.card.shared.cri || 0)
 
-      return [
-          {
-            text: total > 1 ? total + ' votes' : total + ' vote',
-            color: 'green',
-          },
-          {
-            text: nthtext,
-            color:'light-gray'
-          },
-          {
-            text: imptext,
-            color:'light-gray'
-          },
-          {
-            text: criticaltext,
-            color:'light-gray'
-          }
-      ];
+      var badgeArray = [
+        {
+          text: total > 1 ? total + ' votes' : total + ' vote',
+          color: 'green',
+        },
+      ]
+
+      if(nthtext !== "") { badgeArray.push({text:nthtext, color:'light-gray'})}
+      if(imptext !== "") { badgeArray.push({text:imptext, color:'light-gray'})}
+      if(criticaltext !== "") { badgeArray.push({text:criticaltext, color:'light-gray'})}
+
+      return badgeArray;
     });
   }
 });
