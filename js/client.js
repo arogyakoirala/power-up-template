@@ -216,9 +216,10 @@ TrelloPowerUp.initialize({
       var nthtext = (allValues.card && allValues.card.shared && allValues.card.shared.nth) ? "Nice to have: " + String(allValues.card.shared.nth) : "Nice to have: 0";
       var imptext = (allValues.card && allValues.card.shared && allValues.card.shared.imp) ? "Important: " + String(allValues.card.shared.imp) : "Important: 0";
       var criticaltext = (allValues.card && allValues.card.shared && allValues.card.shared.cri) ? "Critical: " + String(allValues.card.shared.cri) : "Critical: 0";
+      var total = allValues.card.shared.nth || 0 + allValues.card.shared.imp || 0 + allValues.card.shared.nth || 0
 
       return [{
-          text: nthtext,
+          text: total + 'votes',
           color: 'light-gray',
         },
         {
