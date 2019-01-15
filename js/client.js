@@ -224,15 +224,15 @@ TrelloPowerUp.initialize({
             color: 'green',
           },
           {
-            text: nthtext
+            text: nthtext,
             color:'light-gray'
           }.
           {
-            text: imptext
+            text: imptext,
             color:'light-gray'
           },
           {
-            text: critext
+            text: critext,
             color:'light-gray'
           }
       ];
