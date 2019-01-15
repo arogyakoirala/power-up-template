@@ -232,7 +232,7 @@ TrelloPowerUp.initialize({
             color:'light-gray'
           },
           {
-            text: critext,
+            text: criticaltext,
             color:'light-gray'
           }
       ];
