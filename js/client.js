@@ -226,7 +226,7 @@ TrelloPowerUp.initialize({
           {
             text: nthtext,
             color:'light-gray'
-          }.
+          },
           {
             text: imptext,
             color:'light-gray'
